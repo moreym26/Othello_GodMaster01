@@ -1,4 +1,4 @@
 package com.example.utilities;
 
-public class ProxyGame {
+public class Saving {
 }

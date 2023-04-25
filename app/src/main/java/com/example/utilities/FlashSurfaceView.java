@@ -1,5 +1,4 @@
 package com.example.utilities;
 
-public interface Game {
-
+public class FlashSurfaceView {
 }
