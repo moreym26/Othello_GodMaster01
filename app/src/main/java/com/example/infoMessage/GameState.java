@@ -1,8 +1,5 @@
 package com.example.infoMessage;
 
-
-import static edu.up.cs301.game.GameFramework.utilities.Saving.SEPARATOR;
-
 /**
  * The state of the game. This class should be subclassed so that it holds
  * all state information for the particular game being implemented. For
@@ -58,4 +55,3 @@ public abstract class GameState extends GameInfo {
     }
 
 }
-

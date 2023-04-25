@@ -1,6 +1,8 @@
 package com.example.actionMessage;
 
 
+import com.example.players.GamePlayer;
+
 import java.io.Serializable;
 
 //Let's the Game know the player is done with the turn
