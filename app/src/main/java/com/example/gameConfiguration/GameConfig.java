@@ -1,6 +1,8 @@
 package com.example.gameConfiguration;
 
 
+import static com.example.utilities.EqualityMethods.arrayEquals;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
