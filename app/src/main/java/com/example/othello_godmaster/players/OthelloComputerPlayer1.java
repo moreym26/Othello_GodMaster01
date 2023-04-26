@@ -1,5 +1,8 @@
 package com.example.othello_godmaster.players;
 
+import android.os.Handler;
+import android.util.Log;
+
 import com.example.infoMessage.GameInfo;
 import com.example.infoMessage.IllegalMoveInfo;
 import com.example.infoMessage.NotYourTurnInfo;
@@ -22,9 +25,34 @@ public class OthelloComputerPlayer1 extends GameComputerPlayer {
         }
 
         OthelloState othelloState = new OthelloState((OthelloState) info);
-        if (othelloState.getIsBlackTurn) {
-            //stuff
-        }
-    }
+        if (!othelloState.getIsBlackTurn()) {
 
-}
+                Handler handler = new Handler();
+
+
+                    //White AI move
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!othelloState.isDumb) {
+                                othelloState.godAIMove();
+                            } else {
+                                othelloState.dumbAIMove();
+                            }
+                            othelloState.endGame();
+                            view.invalidate();
+                            if(!othelloState.isBlackTurn){ Log.d("click", "white moves");}
+                            othelloState.setIsBlackTurn(true);
+                            if(!othelloState.moveAvailable()){
+                                othelloState.setGoAgain(true);
+                            }
+                        }
+                    }, 2000);
+                    othelloState.setGoAgain(false);
+                }
+
+            }           
+        }
+
+
+
