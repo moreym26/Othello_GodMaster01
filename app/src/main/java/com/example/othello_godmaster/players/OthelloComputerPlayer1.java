@@ -1,5 +1,6 @@
 package com.example.othello_godmaster.players;
 
+
 import android.os.Handler;
 import android.util.Log;
 
@@ -8,6 +9,8 @@ import com.example.infoMessage.IllegalMoveInfo;
 import com.example.infoMessage.NotYourTurnInfo;
 import com.example.othello_godmaster.infoMessage.OthelloState;
 import com.example.players.GameComputerPlayer;
+
+//EASY AI
 
 public class OthelloComputerPlayer1 extends GameComputerPlayer {
     public OthelloComputerPlayer1(String name) {
