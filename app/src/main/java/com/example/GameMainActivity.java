@@ -32,7 +32,10 @@ import android.widget.TabHost.TabSpec;
 import com.example.gameConfiguration.GameConfig;
 import com.example.gameConfiguration.GamePlayerType;
 import com.example.infoMessage.GameState;
-import com.example.othello_godmaster.R;
+import com.example.R;
+
+
+
 import com.example.players.GamePlayer;
 import com.example.utilities.IPCoder;
 import com.example.utilities.Logger;
