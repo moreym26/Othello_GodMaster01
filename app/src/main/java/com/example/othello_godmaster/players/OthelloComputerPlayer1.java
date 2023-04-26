@@ -43,7 +43,7 @@ public class OthelloComputerPlayer1 extends GameComputerPlayer {
                                 othelloState.dumbAIMove();
                             }
                             othelloState.endGame();
-                            view.invalidate();
+                           // OthelloView.invalidate();
                             if(!othelloState.isBlackTurn){ Log.d("click", "white moves");}
                             othelloState.setIsBlackTurn(true);
                             if(!othelloState.moveAvailable()){
