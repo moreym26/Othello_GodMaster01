@@ -23,7 +23,7 @@ public class OthelloComputerPlayer1 extends GameComputerPlayer {
 
         OthelloState othelloState = new OthelloState((OthelloState) info);
         if (othelloState.getIsBlackTurn) {
-
+            //stuff
         }
     }
 
