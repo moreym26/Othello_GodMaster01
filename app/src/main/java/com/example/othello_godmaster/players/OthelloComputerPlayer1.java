@@ -12,6 +12,8 @@ import com.example.players.GameComputerPlayer;
 
 //EASY AI
 
+
+
 public class OthelloComputerPlayer1 extends GameComputerPlayer {
     public OthelloComputerPlayer1(String name) {
         super(name);
@@ -31,17 +33,12 @@ public class OthelloComputerPlayer1 extends GameComputerPlayer {
         if (!othelloState.getIsBlackTurn()) {
 
                 Handler handler = new Handler();
-
-
                     //White AI move
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            if (!othelloState.isDumb) {
-                                othelloState.godAIMove();
-                            } else {
-                                othelloState.dumbAIMove();
-                            }
+                            othelloState.dumbAIMove();
+
                             othelloState.endGame();
                            // OthelloView.invalidate();
                             if(!othelloState.isBlackTurn){ Log.d("click", "white moves");}
@@ -53,7 +50,6 @@ public class OthelloComputerPlayer1 extends GameComputerPlayer {
                     }, 2000);
                     othelloState.setGoAgain(false);
                 }
-
             }           
         }
 
