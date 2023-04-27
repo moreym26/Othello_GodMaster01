@@ -438,7 +438,7 @@ public class OthelloState extends GameState implements Serializable{
      * 700x200
      * 1700x1200
      */
-    public void dumbAIMove() {
+    public int[] dumbAIMove() {
         boolean haveMoved = false;
         if (!isBlackTurn && isDumb) {//if its the computers turn
             // Iterate through the board until you find an empty spot that is a valid move,
@@ -446,10 +446,11 @@ public class OthelloState extends GameState implements Serializable{
             for (int i = 0; i<8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (haveMoved == false && isValidMove(i, j)) {
-                        flip(i, j);
-                        board[i][j] = 'w';//puts white piece
+                        //flip(i, j);
+                        //board[i][j] = 'w';//puts white piece
                         haveMoved = true;
-                        break;
+                        int[] a = {i, j};
+                        return a;
                     }
                 }
             }
@@ -458,10 +459,10 @@ public class OthelloState extends GameState implements Serializable{
         else {
             //if its not the computers turn, don't do anything
         }
-
+        return null;
     }
 
-    public void godAIMove() {
+    public int[] godAIMove() {
         boolean haveMoved = false;
         Random random = new Random(100);
 
@@ -473,20 +474,26 @@ public class OthelloState extends GameState implements Serializable{
                     for (int j = 0; j < 8; j++) {
                         //corners
                         if (haveMoved == false && isValidMove(i, j) && ((i == 0 && j == 0) || (i == 0 && j == 8) || (i == 8 && j == 0) || (i == 8 && j == 8))) {
-                            flip(i, j);
-                            board[i][j] = 'w';//puts white piece
-                            haveMoved = true;
-                            break;
+                            //flip(i, j);
+                            //board[i][j] = 'w';//puts white piece
+                            int[] a = {i, j};
+                            return a;
+                            //haveMoved = true;
+                            //break;
                         } else if (haveMoved == false && isValidMove(i, j) && (i == 0 || j == 0)) {
-                            flip(i, j);
-                            board[i][j] = 'w';//puts white piece
-                            haveMoved = true;
-                            break;
+                            //flip(i, j);
+                            //board[i][j] = 'w';//puts white piece
+                            int[] a = {i, j};
+                            return a;
+                            //haveMoved = true;
+                            //break;
                         } else if (haveMoved == false && isValidMove(i, j)) {
-                            flip(i, j);
-                            board[i][j] = 'w';//puts white piece
-                            haveMoved = true;
-                            break;
+                            //flip(i, j);
+                            //board[i][j] = 'w';//puts white piece
+                            int[] a = {i, j};
+                            return a;
+                            //haveMoved = true;
+                            //break;
                         }
                     }
                 }
@@ -496,20 +503,26 @@ public class OthelloState extends GameState implements Serializable{
                     for (int j = 8; j > 0; j--) {
                         //corners
                         if (haveMoved == false && isValidMove(i, j) && ((i == 0 && j == 0) || (i == 0 && j == 8) || (i == 8 && j == 0) || (i == 8 && j == 8))) {
-                            flip(i, j);
-                            board[i][j] = 'w';//puts white piece
-                            haveMoved = true;
-                            break;
+                            //flip(i, j);
+                            //board[i][j] = 'w';//puts white piece
+                            int[] a = {i, j};
+                            return a;
+                            //haveMoved = true;
+                            //break;
                         } else if (haveMoved == false && isValidMove(i, j) && (i == 0 || j == 0)) {
-                            flip(i, j);
-                            board[i][j] = 'w';//puts white piece
-                            haveMoved = true;
-                            break;
+                            //flip(i, j);
+                            //board[i][j] = 'w';//puts white piece
+                            int[] a = {i, j};
+                            return a;
+                            //haveMoved = true;
+                            ////break;
                         } else if (haveMoved == false && isValidMove(i, j)) {
-                            flip(i, j);
-                            board[i][j] = 'w';//puts white piece
-                            haveMoved = true;
-                            break;
+                            //flip(i, j);
+                            //board[i][j] = 'w';//puts white piece
+                            int[] a = {i, j};
+                            return a;
+                            //haveMoved = true;
+                            //break;
                         }
                     }
                 }
@@ -519,7 +532,7 @@ public class OthelloState extends GameState implements Serializable{
         else {
             //if its not the computers turn, don't do anything
         }
-
+        return null;
     }
 
     /*
