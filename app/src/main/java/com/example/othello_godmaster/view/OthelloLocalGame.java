@@ -34,10 +34,10 @@ public class OthelloLocalGame extends LocalGame {
     @Override
     protected boolean canMove(int playerIdx) {
         //Player id 0 is black. Player id 1 is white
-        if(((OthelloState)state).isBlackTurn && playerIdx == 0){
+        if(((OthelloState)state).isBlackTurn && playerIdx == 0 && ((OthelloState)(state)).moveAvailable()){
             return true;
         }
-        if(!((OthelloState)state).isBlackTurn && playerIdx == 1){
+        if(!((OthelloState)state).isBlackTurn && playerIdx == 1 && ((OthelloState)(state)).moveAvailable()){
             return true;
         }
         else
