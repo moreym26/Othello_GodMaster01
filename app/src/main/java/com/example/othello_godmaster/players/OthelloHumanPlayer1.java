@@ -8,6 +8,7 @@ import android.view.View;
 import com.example.GameMainActivity;
 import com.example.infoMessage.GameInfo;
 import com.example.othello_godmaster.R;
+import com.example.othello_godmaster.actionMessage.OthelloMoveAction;
 import com.example.othello_godmaster.infoMessage.OthelloState;
 import com.example.othello_godmaster.view.OthelloView;
 import com.example.players.GameHumanPlayer;
@@ -37,65 +38,58 @@ public class OthelloHumanPlayer1 extends GameHumanPlayer implements View.OnTouch
 
     }
     @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        OthelloState gameState = (OthelloState) game.getGameState();
-        //Get XY Coordinates
-        if(motionEvent != null) {
-            gameState.touchX = motionEvent.getX();
-            gameState.touchY = motionEvent.getY();
+    public boolean onTouch(View view, MotionEvent event) {
+        // ignore if not an "up" event
+        if (event.getAction() != MotionEvent.ACTION_UP) return true;
+        // get the x and y coordinates of the touch-location;
+        // convert them to square coordinates (where both
+        // values are in the range 0..2)
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        int row = -1;
+        int col = -1;
+        //if its out of bounds return false
+        if (x < 400 || y > 1200 || x < 100 || y > 900) {
+            return false;
         }
-        view.invalidate();
-        if(gameState.humanGame) {
-            if (gameState.isBlackTurn) {
-                if (gameState.dumbMakeMove('b')) {
-                    Log.d("click", "black moves");
-                    gameState.setIsBlackTurn(false);
-                    gameState.endGame();
-
-                    //Checks if no move available for WHITE
-                    if(!gameState.moveAvailable()){
-                        gameState.setIsBlackTurn(true); //Gives turn back to black if no white moves
-                    }
-                    view.invalidate();
-                }
-            }
-            else {
-                if (gameState.dumbMakeMove('w')) {
-                    Log.d("click", "white moves");
-                    gameState.setIsBlackTurn(true);
-                    gameState.endGame();
-
-                    //Checks if no move available for BLACK
-                    if(!gameState.moveAvailable()){
-                        gameState.setIsBlackTurn(false); //Gives turn back to white if no black moves
-                    }
-                    view.invalidate();
-                }
-            }
-            //If move isn't valid for both players, end the game
-            if(!gameState.moveAvailable()){
-                gameState.setIsBlackTurn(!gameState.isBlackTurn);
-                if(!gameState.moveAvailable()){
-                    gameState.endGame();
-                }
-                else gameState.setIsBlackTurn(!gameState.isBlackTurn);
-            }
+        //X coordinates
+        if (x > 400 && x < 500) {
+            col = 0;
+        } else if (x < 600) {
+            col = 1;
+        } else if (x < 700) {
+            col = 2;
+        } else if (x < 800) {
+            col = 3;
+        } else if (x < 900) {
+            col = 4;
+        } else if (x < 1000) {
+            col = 5;
+        } else if (x < 1100) {
+            col = 6;
+        } else if (x < 1200) {
+            col = 7;
         }
-        else if(gameState.AIGame) {
-            Handler handler = new Handler();
-            if ((gameState.dumbMakeMove('b') && gameState.isBlackTurn) || gameState.goAgain) {
-                if (gameState.isBlackTurn) {
-                    Log.d("click", "black moves");
-                }
-                gameState.setIsBlackTurn(false);
-                gameState.endGame();
-                //Checks if no move available for WHITE
-
-                if (!gameState.moveAvailable()) {
-                    gameState.setIsBlackTurn(true); //Gives turn back to black if no white moves
-                }
-                view.invalidate();
-            }
+        //Y coordinates
+        if (y > 100 && y < 200) {
+            row = 0;
+        } else if (y < 300) {
+            row = 1;
+        } else if (y < 400) {
+            row = 2;
+        } else if (y < 500) {
+            row = 3;
+        } else if (y < 600) {
+            row = 4;
+        } else if (y < 700) {
+            row = 5;
+        } else if (y < 800) {
+            row = 6;
+        } else if (y < 900) {
+            row = 7;
+        }
+        if (row == -1 || col == -1){
+            game.sendAction(new OthelloMoveAction(this, row, col));
         }
         return false;
     }
