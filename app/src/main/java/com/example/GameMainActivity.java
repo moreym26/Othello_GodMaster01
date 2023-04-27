@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -28,6 +29,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TabHost.TabSpec;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gameConfiguration.GameConfig;
 import com.example.gameConfiguration.GamePlayerType;
@@ -54,8 +57,8 @@ import com.example.utilities.Saving;
  * @author Eric Imperio
  * @date Version 2020
  */
-public abstract class GameMainActivity extends Activity implements
-        View.OnClickListener {
+public abstract class GameMainActivity extends AppCompatActivity implements
+        View.OnClickListener, View.OnTouchListener {
     //Tag for Logging
     private static final String TAG = "GameMainActivity";
     /*
@@ -156,12 +159,19 @@ public abstract class GameMainActivity extends Activity implements
      * Public Methods
      * --------------------------------------------------------------------
      */
+
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        //Set up GUI for gameConfiguration
+        return false;
+    }
     /**
      * onCreate
      *
      * "main" for the game framework
      */
-    @SuppressLint("MissingInflatedId")
+    //@SuppressLint("MissingInflatedId")
     @Override
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -170,9 +180,11 @@ public abstract class GameMainActivity extends Activity implements
         Logger.setContext(getApplicationContext());
 
         // Initialize the layout
-        setContentView(R.layout.game_config_main);
+        setContentView(R.layout.activity_main);
+        View view = findViewById(R.id.View);
+        view.setOnTouchListener(this);
 
-        // create the default configuration for this game
+        /*// create the default configuration for this game
         this.config = createDefaultConfig();
 
         // if there is a saved configuration, modify the default configuration accordingly
@@ -211,7 +223,7 @@ public abstract class GameMainActivity extends Activity implements
             Logger.setDebugValue(true);
         }else {
             Logger.setDebugValue(false);
-        }
+        }*/
     }// onCreate
 
     /**
@@ -633,7 +645,6 @@ public abstract class GameMainActivity extends Activity implements
         }
 
     }// onClick
-
     private String startGame() {
         GameConfig finalConfig = scrapeData();
         //Saving the user's inputs in case they want to restart the game later
