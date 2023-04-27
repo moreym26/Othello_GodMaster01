@@ -63,6 +63,7 @@ public class OthelloLocalGame extends LocalGame {
         int col = oa.getCol();
 
         char[][] board = state.getBoard();
+        //isValid move variation. Look in OthelloState for details
         if (!(board[row][col] == 'e')) {
             return false;
         }
